@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Hololens e o novo HoloToolkit | Lazaro Fernandes Lima Suleiman</title><meta name="description"><meta name="generator" content="Lazaro Fernandes Lima Suleiman"><meta name="author" content="Lazaro Fernandes Lima"><meta name="keywords" content="sjaak van den berg, svdb, bitcoin, crypto, payment, integration, bitcoins, wordpress, betaling, webshop, front end, design, ontwerp, developer"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="Lazaro Fernandes Lima Suleiman" title="Lazaro Fernandes Lima Suleiman"></a><h1><a href="/" alt="Lazaro Fernandes Lima Suleiman" title="Lazaro Fernandes Lima Suleiman" itemprop="headline">Lazaro Fernandes Lima Suleiman</a></h1><p itemprop="description">head of technology at <a href='https://hondana.com.br'>@Hondana</a></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">Hololens e o novo HoloToolkit</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2017-02-06T20:33:43.000Z"> Monday, February 6th 2017 at 18:33</time><br>Last updated on<time itemprop="dateModified" datetime="2017-02-06T20:33:43.000Z"> Thursday, November 14th 2019 at 12:52</time></span><p>Ao iniciar o desenvolvimento de <em>apps</em> holográficas no <strong>Microsoft Hololens</strong> utilizando o <strong>Unity</strong>, muitos scripts relacionados a <em>Scripting API</em> da plataforma e cálculos matemáticos diversos são necessários para que os desenvolvedores criem gestos e incorporem ações aos hologramas, conforme podemos acompanhar no <strong><a href="https://developer.microsoft.com/EN-US/WINDOWS/HOLOGRAPHIC/ACADEMY" target="_blank" rel="noopener">Holographic Academy</a></strong>.</p>
+<p>Visando abstrair parte da complexidade e padronizar a implementação das principais ações que um holograma suporta a Microsoft criou o <strong><a href="https://github.com/Microsoft/HoloToolkit-Unity" target="_blank" rel="noopener">HoloToolkit-Unity</a></strong>, projeto <em>open source</em> disponível no <em>github</em> que oferece aos desenvolvedores um conjunto de <em>scripts</em>, materiais e <em>prefabs</em> (componentes pré-fabricados) com o objetivo de acelerar o desenvolvimento de <em>apps</em> holográficas no <em>Unity</em>. Este projeto é parte efetiva do já existente <em><a href="https://github.com/Microsoft/HoloToolkit" target="_blank" rel="noopener">HoloToolkit</a></em> mas possui componentes exclusivos para a plataforma <em>Unity</em>.</p>
+<p>O objetivo deste post será apresentar a nova versão do <em>HoloToolkit-Unity</em>, lançada no dia 10/01/2017, indo um pouco mais a fundo no desenvolvimento de <em>apps</em> holográficas. Se este é o seu primeiro contato com o desenvolvimento para <em>Hololens</em> confira o <a href="http://lazarofl.github.io/2016/11/06/Desenvolvendo-Hologramas-com-o-Microsoft-Hololens/">primeiro post</a> desta série.</p>
+<h2 id="Obtendo-o-HoloToolkit"><a href="#Obtendo-o-HoloToolkit" class="headerlink" title="Obtendo o HoloToolkit"></a>Obtendo o HoloToolkit</h2><p>Anteriormente, era necessário baixar todo o projeto do <em>HoloToolkit-Unity</em> no <em>github</em>, diretamente da <em>branch</em> principal e através do <em>Unity</em> realizar um <em>export package</em>, não existiam <em>releases</em>, hoje o projeto já possui uma <a href="https://github.com/Microsoft/HoloToolkit-Unity/releases" target="_blank" rel="noopener">área com as últimas releases</a> e já estamos na segunda versão.</p>
+<p>Estaremos utilizando a versão <code>1.5.5.0</code> do <em>HoloToolkit</em> lançada no dia 10/01/2017 e a versão <code>5.6.0b5</code> do <em>Unity</em>, basta baixar através dos links abaixo:</p>
+<ul>
+<li><a href="https://github.com/Microsoft/HoloToolkit-Unity/releases/tag/v1.5.5.0" target="_blank" rel="noopener">https://github.com/Microsoft/HoloToolkit-Unity/releases/tag/v1.5.5.0</a></li>
+<li><a href="https://unity3d.com/unity/beta/unity5.6.0b5" target="_blank" rel="noopener">https://unity3d.com/unity/beta/unity5.6.0b5</a></li>
+</ul>
+<blockquote>
+<p>As novas versões do <em>HoloToolkit-Unity</em> não serão mais compatíveis com versões anteriores do <em>Unity Technical Preview</em>, como no <a href="http://lazarofl.github.io/2016/11/06/Desenvolvendo-Hologramas-com-o-Microsoft-Hololens/">post anterior</a>, logo, é necessário utilizar a versão <code>5.6.0b3</code> do <em>Unity</em> ou superior.</p>
+</blockquote>
+<h2 id="O-novo-modulo-de-Input"><a href="#O-novo-modulo-de-Input" class="headerlink" title="O novo módulo de Input"></a>O novo módulo de Input</h2><p>Nesta nova versão do <em>HoloToolkit</em> todo o módulo de <em>Input</em> foi redesenhado, visando extensibilidade e performance. Vale a pena conferir a <a href="https://github.com/Microsoft/HoloToolkit-Unity/issues/277" target="_blank" rel="noopener">issue #277</a> que motivou toda a mudança diretamente no repositório do projeto.</p>
+<p>Em resumo, quando adicionamos o <em>prefab</em> <code>InputManager</code> do <em>HoloToolkit</em> à cena principal habilitamos todo o sistema de <em>input handle</em>, permitindo interações com gestos e comandos de voz. E para ativar estes eventos basta criarmos scripts que implementem interfaces fornecidas pelo <em>HoloToolkit</em>, veja abaixo as interfaces disponíveis.</p>
+<ul>
+<li><code>IFocusable</code></li>
+<li><code>IHoldHandle</code></li>
+<li><code>IInputHandler</code></li>
+<li><code>IInputClickHandler</code></li>
+<li><code>IManipulationHandler</code></li>
+<li><code>INavigationnHandler</code></li>
+<li><code>ISourceStateHandler</code></li>
+<li><code>ISpeechHandler</code></li>
+</ul>
+<p>Neste post vamos desenvolver uma <code>app</code> contendo um holograma o qual iremos adicionar comportamentos de <em>click</em> e de <em>hover</em> implementando as interfaces <code>IFocusable</code> e <code>IInputClickHandler</code>, desta forma, basta implementar os métodos abaixo e associar o script ao holograma desejado.</p>
+<ul>
+<li><code>void OnFocusEnter();</code></li>
+<li><code>void OnFocusExit();</code></li>
+<li><code>void OnInputClicked(InputEventData eventData);</code></li>
+</ul>
+<p>Para exemplificar, vamos desenvolver uma pequena <em>app</em> que altere a cor de um holograma quando estivermos em <strong>foco</strong> e adicione um comportamento de rotação ao <strong>clicar</strong> sobre o holograma.</p>
+<p>O projeto pode ser baixado no <a href="https://github.com/lazarofl/HoloToolkit-Simple-Example" target="_blank" rel="noopener">github</a>.</p>
+<h2 id="Importando-o-HoloToolkit-para-o-seu-projeto-Unity"><a href="#Importando-o-HoloToolkit-para-o-seu-projeto-Unity" class="headerlink" title="Importando o HoloToolkit para o seu projeto Unity"></a>Importando o HoloToolkit para o seu projeto Unity</h2><p>Após criar um novo projeto, remova a <em>Main Camera</em> e o <em>Directional Lights</em> localizados na aba <em>Hierarchy</em>. Iremos utilizar componentes já configurados a partir do <em>HoloToolkit</em>.</p>
+<p>Em seguida, importe o arquivo <code>HoloToolkit-Unity-v1.5.5.0.unitypackage</code> através do menu <code>Assets</code> &gt; <code>Import Package</code> &gt; <code>Custom Package...</code>.</p>
+<p>Após finalizar a importação, a pasta <code>HoloToolkit</code> será exibida dentro de <code>Assets</code> e o <em>Unity</em> receberá um novo item de menu chamado <em>HoloToolkit</em>, o qual utilizaremos ao final do post para nos ajudar a realizar o <em>deploy</em> da <em>app</em>, veja abaixo.</p>
+<p><a href="holotoolkit-importado.PNG"><img src="holotoolkit-importado.PNG" alt="holotoolkit importado"></a></p>
+<h2 id="Preparando-a-Cena-com-o-auxilio-do-HoloToolkit"><a href="#Preparando-a-Cena-com-o-auxilio-do-HoloToolkit" class="headerlink" title="Preparando a Cena com o auxilio do HoloToolkit"></a>Preparando a Cena com o auxilio do HoloToolkit</h2><p><a href="http://lazarofl.github.io/2016/11/06/Desenvolvendo-Hologramas-com-o-Microsoft-Hololens/">No post anterior</a> configuramos a <em>câmera</em> e as <em>configurações de build</em> manualmente, contudo, o <em>HoloToolkit</em> já nos fornece opções para automizar esse processo inicial.</p>
+<p>Adicione os <em>prefabs</em> <code>HoloLensCamera</code>, <code>DefaultCursor</code> e o já citado <code>InputManager</code>. Basta realizar uma pesquisa por estes componentes no <em>Unity</em> e arrastá-los para a raiz do painel <em>Hierarchy</em>.</p>
+<p>O <code>HololensCamera</code> possui as configurações padrões que utilizamos para o objeto de câmera no primeiro post, nada de mais até aqui.</p>
+<p>O <code>DefaultCursor</code> é um <em>prefab</em> que exibe um ponto branco na tela e aumenta o seu tamanho quando esta sobre um holograma, utilizaremos este cursor em nosso projeto de exemplo.</p>
+<p>Crie um <strong><em>GameObject</em></strong> e em seguida insira um <strong><em>Cube</em></strong> dentro dele.</p>
+<p>Neste momento, o <code>InputManager</code> já esta gerenciando eventos e nosso cursor já esta disponível na interface quando rodamos a aplicação a partir do <em>Unity</em>.</p>
+<h2 id="Implementando-comportamentos-ao-holograma"><a href="#Implementando-comportamentos-ao-holograma" class="headerlink" title="Implementando comportamentos ao holograma"></a>Implementando comportamentos ao holograma</h2><p>Teremos neste exemplo um <em>script</em> único que gerencia tanto o comportamento de <strong><em>click</em></strong> quanto o de <strong><em>focus</em></strong>, para isso, crie um <em>script</em> em <code>C#</code> com o nome <code>HologramBehaviours</code> e associe este <em>script</em> ao cubo.</p>
+<script src="https://gist.github.com/lazarofl/037ceb37068a50bbd13437b1439d4f50.js"></script>
+
+<p>O script acima rotaciona o objeto quando a ação de <em>click</em> é disparada, altera a cor do objeto em foco para vermelho e restaura a cor quando sai de foco.</p>
+<p>##Suporte a gesto de movimentação</p>
+<p>Para darmos mais interatividade ao nosso <em>app</em> podemos utilizar o <em>script</em> <code>HandDraggable.cs</code> do <em>HoloToolkit</em> o qual possui toda a implementação necessária para realizar a movimentação de um objeto pelo ambiente através do gesto de <strong>arrastar</strong> e <strong>soltar</strong>.</p>
+<p>Para adicionar esse suporte basta arrastar o <em>script</em> <code>HandDraggable.cs</code> para o objeto Cubo.</p>
+<p>O script está localizado em:</p>
+<ul>
+<li><code>Assets</code> &gt; <code>HoloToolkit</code> &gt; <code>Input</code>  &gt; <code>Scripts</code> &gt; <code>Interactions</code> &gt; <code>HandDraggable.cs</code></li>
+</ul>
+<h2 id="Build-e-Deploy"><a href="#Build-e-Deploy" class="headerlink" title="Build e Deploy"></a>Build e Deploy</h2><p>Configurar o <strong><em>Project Settings</em></strong> e as <strong><em>Capabilities Settings</em></strong> é um processo que fazíamos de forma manual.<br>Para acelerar o processo de configuração da <em>build</em> o <em>HoloToolkit</em> habilita no menu principal do <em>Unity</em> opções para nos ajudar neste processo.</p>
+<p>Confira abaixo os passos para realizar as configurações necessárias de <em>build</em> para a nossa <em>app</em> a partir do menu principal:</p>
+<ul>
+<li><code>HoloToolkit</code> &gt; <code>Configure</code> &gt; <code>Apply Hololens Project Settings</code> - Marque todas as opções e aplique.</li>
+<li><code>HoloToolkit</code> &gt; <code>Configure</code> &gt; <code>Apply Hololens Capability Settings</code> - Marque a opção <strong><em>Spatial Perception</em></strong> e aplique.</li>
+<li><code>HoloToolkit</code> &gt; <code>Build Window</code> &gt; <code>Build Visual Studio SLN</code></li>
+</ul>
+<p>Neste momento, o projeto foi exportado para um projeto <code>UWP</code>, o próximo passo é abrir a <em>solution</em> e realizar o deploy para o dispositivo ou para o emulador. Abra o projeto gerado utilizando o caminho abaixo:</p>
+<ul>
+<li><code>HoloToolkit</code> &gt; <code>Build Window</code> &gt; <code>Open SLN</code></li>
+</ul>
+<p>Altere a plataforma de <code>ARM</code> para <code>x86</code> e selecione o <code>Hololens Emulator</code> ou <code>Remote Machine</code> caso possua o dispositivo.</p>
+<p>Agora basta rodar a aplicação sem modo de debug através de <code>Ctrl + F5</code>.</p>
+<p>Para finalizar, preparei um vídeo onde mostro na visão do Hololens o resultado final desse exemplo.</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/JPgg4mDkErg" frameborder="0" allowfullscreen></iframe>
+
+<p><a href="https://github.com/lazarofl/HoloToolkit-Simple-Example" target="_blank" rel="noopener">Baixe o projeto no github</a>.</p>
+<p>É isso pessoal, em breve maiores novidades.</p>
+<p>Lazaro.</p>
+</article><section id="comments"><h2>Comments<div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript></div></h2></section></main><script async>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],
+j.src = '//' + l + '.disqus.com/' + k + '.js', i.parentNode.insertBefore(j, i)})
+(document,'script','lazarolima','embed');
+</script><script async>var disqus_shortname = 'lazarolima';
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);
+}());
+</script></body></html>

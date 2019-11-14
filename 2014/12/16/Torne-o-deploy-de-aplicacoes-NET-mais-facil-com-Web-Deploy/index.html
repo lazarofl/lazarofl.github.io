@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Torne o deploy de aplicações .NET mais fácil com Web Deploy | Lazaro Fernandes Lima Suleiman</title><meta name="description"><meta name="generator" content="Lazaro Fernandes Lima Suleiman"><meta name="author" content="Lazaro Fernandes Lima"><meta name="keywords" content="sjaak van den berg, svdb, bitcoin, crypto, payment, integration, bitcoins, wordpress, betaling, webshop, front end, design, ontwerp, developer"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="Lazaro Fernandes Lima Suleiman" title="Lazaro Fernandes Lima Suleiman"></a><h1><a href="/" alt="Lazaro Fernandes Lima Suleiman" title="Lazaro Fernandes Lima Suleiman" itemprop="headline">Lazaro Fernandes Lima Suleiman</a></h1><p itemprop="description">head of technology at <a href='https://hondana.com.br'>@Hondana</a></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">Torne o deploy de aplicações .NET mais fácil com Web Deploy</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2014-12-16T17:24:21.000Z"> Tuesday, December 16th 2014 at 15:24</time><br>Last updated on<time itemprop="dateModified" datetime="2014-12-16T17:24:21.000Z"> Thursday, November 14th 2019 at 12:52</time></span><p>Estou escrevendo esse passo a passo pois não encontrei muito material sobre o assunto e o objetivo é abrir o tópico de <em>deploy</em> para futuramente postar sobre deploy contínuo e outros <em>paranauês</em> sobre o assunto.</p>
+<p>Fazer o deploy de aplicações web .NET com segurança e simplicidade tornou-se bem mais fácil com o <a href="http://www.iis.net/downloads/microsoft/web-deploy" target="_blank" rel="noopener">Web Deploy 3.5</a>, neste post vou explicar os <em>paranauês</em> de configuração em um <strong>Windows Server 2012 R2</strong> com <strong>IIS 8</strong>.</p>
+<p>Optei por utilizar uma instância <a href="http://aws.amazon.com/pt/ec2/" target="_blank" rel="noopener">EC2</a> da Amazon, logo, seguem também algumas dicas referentes ao processo de configuração do <em>Web Deploy 3.5</em> envolvendo instâncias na AWS ;)</p>
+<ul>
+<li><a href="#aws">Tipo de instância AWS</a></li>
+<li><a href="#portas">Portas de acesso</a></li>
+<li><a href="#iis">Instalando o IIS 8</a></li>
+<li><a href="#web-deploy">Instalando o Web Deploy</a></li>
+<li><a href="#usuario-deploy">Associando um usuário <em>sem permissão administrativa</em> para efetuar o deploy</a></li>
+<li><a href="#visual-studio">Efetuando o deploy pelo Visual Studio</a></li>
+</ul>
+<p><a name="aws"></a></p>
+<h2 id="Tipo-de-instancia-AWS"><a href="#Tipo-de-instancia-AWS" class="headerlink" title="Tipo de instância AWS"></a>Tipo de instância AWS</h2><p>Existem algumas instância já pré-configuradas com IIS 7, Sql Server e etc, vamos fazer a coisa <strong>do zero</strong>, logo, escolha a instância <strong>Windows Server 2012 R2</strong>, veja abaixo.</p>
+<p><img src="/images/web-deploy/instancia_windows_AWS.JPG" alt></p>
+<blockquote><p>Existe um período de gratuidade para as instâncias <em>micro</em>, logo, não se preocupe em testar a plataforma ;)</p>
+</blockquote>
+<p><a name="portas"></a></p>
+<h2 id="Portas-de-acesso"><a href="#Portas-de-acesso" class="headerlink" title="Portas de acesso"></a>Portas de acesso</h2><p>Ao configurar as portas de acesso considere que haverá:</p>
+<ul>
+<li>acesso HTTP (porta 80)</li>
+<li>acesso HTTPS (porta 443) para habilitar o transporte seguro dos dados para o seu server</li>
+<li>acesso a porta 8172, que é a porta padrão que o Web Deploy cria para que você possa autenticar e transmitir o pacote</li>
+</ul>
+<blockquote><p>É possível alterar as portas futuramente caso seja necessário, nem precisa parar a instância.<br>Também é possível escolher uma porta diferente para o Web Deploy durante a instalação do mesmo.</p>
+<footer><strong>#DevTip</strong><cite><a href="http://stackoverflow.com/questions/5004159/opening-port-80-ec2-amazon-web-services/10454688#10454688" target="_blank" rel="noopener">stackoverflow.com/questions/5004159/opening-port-80-ec2-amazon-web-services/10454688#10454688</a></cite></footer></blockquote>
+<p><img src="/images/web-deploy/instancia_portas.JPG" alt></p>
+<p>Após alguns minutos sua instância estará ativa e você poderá acessá-la via Remote Desktop.</p>
+<blockquote><p>Se você está um pouco inseguro até o momento ou mesmo curioso com a plataforma AWS <a href="http://awshub.com.br/resources/instalando-e-configurando-uma-instancia-ec2-windows-na-nuvem-da-aws/" target="_blank" rel="noopener">veja este vídeo mostrando como criar uma instância windows no EC2</a> ;)</p>
+</blockquote>
+<p><a name="iis"></a></p>
+<h2 id="Instalando-o-IIS-8"><a href="#Instalando-o-IIS-8" class="headerlink" title="Instalando o IIS 8"></a>Instalando o IIS 8</h2><p>Ao acessar a instância iremos então configurar o IIS 8</p>
+<ul>
+<li>Acesse o <strong>Server Manager</strong></li>
+<li>Selecione o item <strong>Manage</strong> no menu superior</li>
+<li>Selecione o item <strong>Add Roles and Features</strong></li>
+</ul>
+<p><img src="/images/web-deploy/server-manager.jpg" alt></p>
+<p>Selecione o <em>feature-based installation</em>.</p>
+<p><img src="/images/web-deploy/installation-type.jpg" alt></p>
+<p>Em <strong>Server Roles</strong> selecione os itens:</p>
+<ul>
+<li><strong>Web Server (IIS)</strong></li>
+<li><strong>Application Server</strong></li>
+<li><strong>Windows Deployment Services</strong>.</li>
+</ul>
+<p><img src="/images/web-deploy/iis.jpg" alt></p>
+<p>Em <strong>Role Services</strong> selecione todas as opções que você poderá utilizar em seu servidor web, eu selecionei quase todas as opções exceto os recursos de <em>FTP</em> e <em>ASP clássico</em>.</p>
+<p><img src="/images/web-deploy/role-services.jpg" alt></p>
+<p>Após alguns poucos minutos a instalação será concluída e você terá um servidor IIS rodando, acesse o IP público do seu servidor web e confira a interface de apresentação do IIS 8.</p>
+<p><img src="/images/web-deploy/iis-instalado.jpg" alt></p>
+<p><a name="web-deploy"></a></p>
+<h2 id="Instalando-o-Web-Deploy"><a href="#Instalando-o-Web-Deploy" class="headerlink" title="Instalando o Web Deploy"></a>Instalando o Web Deploy</h2><p>Para instalar o Web Deploy 3.5 é necessário acessar o IIS e baixar o <strong>Web Platform Components</strong>.</p>
+<p><img src="/images/web-deploy/get-web-platform-installer.jpg" alt></p>
+<p>Efetue uma busca por <em>Web Deploy</em> e selecione os itens <strong>Web Deploy 3.5</strong> e <strong>Web Deploy 3.5 for Hosting Servers</strong>, conforme abaixo.</p>
+<p><img src="/images/web-deploy/instalando-web-deploy.jpg" alt></p>
+<blockquote><p>Caso o seu servidor necessite de outros recursos, como <strong>driver MySql</strong>, <strong>Url Rewrite</strong> e etc. você poderá instalar utilizando o Web<br>Platform Installer.<br>Recursos que eu adiciono comumente é o <strong>.NET Framework 4.5 </strong>, <strong>ASP.NET MVC 4</strong>, <strong>ASP.NET MVC 3</strong> e <strong>MySQL Connector</strong>.</p>
+</blockquote>
+<p><a name="usuario-deploy"></a></p>
+<h1 id="Associando-um-usuario-sem-permissao-administrativa-para-efetuar-o-deploy"><a href="#Associando-um-usuario-sem-permissao-administrativa-para-efetuar-o-deploy" class="headerlink" title="Associando um usuário sem permissão administrativa para efetuar o deploy"></a>Associando um usuário <em>sem permissão administrativa</em> para efetuar o deploy</h1><p><img src="/images/web-deploy/access-denied.jpg" alt></p>
+<p>Durante o deploy iremos informar um <em>usuário</em> e <em>senha</em> para autorizar a transmissão do pacote e executar as mudanças no IIS. Se você, <em>pequeno gafanhoto</em>, pensou em passar a senha de <em>Administrator</em> para a galera, bem…</p>
+<p><img src="/images/web-deploy/youre-doing-it-wrong.jpg" alt></p>
+<p>Crie um usuário sem permissão administrativa.</p>
+<p><img src="/images/web-deploy/add-user-account.jpg" alt></p>
+<p><img src="/images/web-deploy/add-user.jpg" alt></p>
+<p>O próximo passo é fornecer permissão de gerenciamento no <em>Web Site</em> para este usuário chamado <strong>Deploy</strong>.</p>
+<ul>
+<li>Acesse o <strong>Web Site</strong></li>
+<li>Acesse o <strong>IIS Manager Permissions</strong></li>
+<li>Adicione o usuário <strong>Deploy</strong></li>
+</ul>
+<p><img src="/images/web-deploy/iis-manager-permissions.jpg" alt></p>
+<p>Agora é preciso configurar o Web Deploy para aceitar o usuário específicado.</p>
+<ul>
+<li>Clique com o botão direito sobre o web site</li>
+<li>Selecione <strong>Deploy</strong></li>
+<li>Selecione <strong>Configure Web Deploy Publishing…</strong></li>
+</ul>
+<p><img src="/images/web-deploy/web-deploy-iis.jpg" alt></p>
+<p>Selecione o usuário <strong>Deploy</strong> e clique em <strong>Setup</strong>.<br>Uma configuração será realizada e exibida na área <em>Results</em>, em seguida a configuração do Web Deploy estará finalizada.</p>
+<p><img src="/images/web-deploy/web-deploy-iis-2.jpg" alt></p>
+<blockquote><p>Apague todo o conteúdo da pasta do web site antes de efetuar a publicação pela primeira vez, isso evita problemas de permissão para excluir arquivos antigos.</p>
+<footer><strong>#DevTip</strong></footer></blockquote>
+<p><a name="visual-studio"></a></p>
+<h2 id="Efetuando-o-deploy-pelo-Visual-Studio"><a href="#Efetuando-o-deploy-pelo-Visual-Studio" class="headerlink" title="Efetuando o deploy pelo Visual Studio"></a>Efetuando o deploy pelo Visual Studio</h2><p>Agora é a hora da verdade, acesse o seu projeto pelo Visual Studio e:</p>
+<ul>
+<li>Botão direito sobre o projeto</li>
+<li>Selecione <strong>Publish…</strong></li>
+<li>Crie um novo <em>profile</em> de publicação, dei o nome de <em>Web Deploy</em> neste exemplo</li>
+<li>Informe o IP da instância em <em>server</em></li>
+<li>Informe o <strong>nome completo</strong> do <em>Web Site</em> em seu <em>IIS</em> em <em>Site name</em></li>
+<li>Informe o nome de usuário incluindo o domínio em <em>User name</em>, ficará algo como <strong>WIN-5C1QN3A0CKR/Deploy</strong></li>
+<li>Informe a senha</li>
+<li>Clique em <strong>Validate Connection</strong> para autenticar o usuário</li>
+</ul>
+<p><img src="/images/web-deploy/web-deploy-visual-studio.jpg" alt></p>
+<p>As demais etapas são apenas pequenas configurações, podemos avançar clicando em <strong>Publish</strong> e analisando o resultado.</p>
+<p><img src="/images/web-deploy/publish-status.jpg" alt></p>
+<p>O resultado…</p>
+<p><img src="/images/web-deploy/publicado.jpg" alt></p>
+<p>Após configurado, o deploy se torna bem mais simples e sem a necessidade de acesso ao servidor.</p>
+<p>Espero que em próximos posts eu possa falar um pouco sobre como fazer um deploy contínuo usando <em>commits</em> no repositório <em>Git</em> do seu projeto, <strong>elevando o nível da zuera para outro patamar</strong>!</p>
+<blockquote><p>Qualquer dúvida é só comentar…<br>[]s</p>
+</blockquote>
+</article><section id="comments"><h2>Comments<div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript></div></h2></section></main><script async>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],
+j.src = '//' + l + '.disqus.com/' + k + '.js', i.parentNode.insertBefore(j, i)})
+(document,'script','lazarolima','embed');
+</script><script async>var disqus_shortname = 'lazarolima';
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);
+}());
+</script></body></html>

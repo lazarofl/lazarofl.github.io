@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en-us"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Mixed Reality Design Labs | Lazaro Fernandes Lima Suleiman</title><meta name="description"><meta name="generator" content="Lazaro Fernandes Lima Suleiman"><meta name="author" content="Lazaro Fernandes Lima"><meta name="keywords" content="sjaak van den berg, svdb, bitcoin, crypto, payment, integration, bitcoins, wordpress, betaling, webshop, front end, design, ontwerp, developer"><meta name="HandheldFriendly" content="True"><meta name="MobileOptimized" content="320"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=0"><link rel="stylesheet" type="text/css" href="/styles/screen.css"><link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png"><link rel="icon" type="image/png" sizes="160x160" href="/images/favicon-160x160.png"><link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png"><meta name="msapplication-TileColor" content="#121315"><meta name="msapplication-TileImage" content="/images/mstile-144x144.png"></head><body itemscope itemtype="https://schema.org/WebPage"><header itemscope itemtype="https://schema.org/WPHeader"><a href="/"><img src="/images/svdb.png" alt="Lazaro Fernandes Lima Suleiman" title="Lazaro Fernandes Lima Suleiman"></a><h1><a href="/" alt="Lazaro Fernandes Lima Suleiman" title="Lazaro Fernandes Lima Suleiman" itemprop="headline">Lazaro Fernandes Lima Suleiman</a></h1><p itemprop="description">head of technology at <a href='https://hondana.com.br'>@Hondana</a></p><nav itemscope itemtype="https://schema.org/SiteNavigationElement"><ul><li itemprop="name"><a href="/" alt="Home" title="Home" itemprop="url">Home</a></li><li itemprop="name"><a href="/articles" alt="Articles" title="Articles" itemprop="url">Articles</a></li><li itemprop="name"><a href="/about" alt="About" title="About" itemprop="url">About</a></li></ul></nav><div class="space"></div></header><main itemscope itemtype="https://schema.org/Blog"><article class="full"><h1 itemprop="headline">Mixed Reality Design Labs</h1><span class="post-meta">Published on<time itemprop="datePublished" datetime="2017-08-18T20:32:01.000Z"> Friday, August 18th 2017 at 17:32</time><br>Last updated on<time itemprop="dateModified" datetime="2017-08-18T20:32:01.000Z"> Thursday, November 14th 2019 at 12:52</time></span><p>Buscando referências no portal do <a href="https://developer.microsoft.com/en-us/windows/mixed-reality/design" target="_blank" rel="noopener">Time de Design em Realidade Mista da Microsoft</a> das quais eu pudesse me basear para padronizar diversos comportamentos, interações e até mesmo acelerar o desenvolvimento de apps holográficas em alguns projetos que estão iniciando aqui na Lambda3 me deparei com o <a href="https://github.com/Microsoft/MRDesignLabs_Unity" target="_blank" rel="noopener">Mixed Reality Design Labs</a>, ou apenas MRDL, projeto que visa compartilhar exemplos, ideias e aprendizados deste time, demonstrando como criar ou reutilizar controles e padrões visuais para os seus aplicativos holográficos.</p>
+<p>Neste post falo brevemente sobre o projeto e como você pode criar excelentes experiências de apps para Hololens com um esforço menor e maior padronização da experiência de uso.</p>
+<h1 id="O-projeto"><a href="#O-projeto" class="headerlink" title="O projeto"></a>O projeto</h1><p>Todo o projeto é open source, sugestões de melhorias e report de bugs são discutidos abertamente e de forma bem proativa no repositório, que vai completar três meses de vida.</p>
+<p><a href="o-projeto.png"><img src="o-projeto.png" alt="O MRDL"></a></p>
+<p>A versão oficial do Unity suportada pelo projeto é a Unity 2017, mas existe uma release com suporte ao Unity 5.6, você pode conferir as ultimas versões disponíveis em <a href="https://github.com/Microsoft/MRDesignLabs_Unity/releases" target="_blank" rel="noopener">https://github.com/Microsoft/MRDesignLabs_Unity/releases</a></p>
+<h1 id="Utilizando-o-projeto"><a href="#Utilizando-o-projeto" class="headerlink" title="Utilizando o projeto"></a>Utilizando o projeto</h1><p>Para utilizar o projeto faça um fork para a sua conta no github e clone o repositório.</p>
+<p>O MRDL utiliza o nosso já conhecido <del><em>HoloToolkit</em></del> <em>MixedRealityToolkit-Unity</em> e possui submódulos <code>git</code> para o projeto <a href="https://github.com/Microsoft/MRDesignLabs_Unity_tools" target="_blank" rel="noopener">https://github.com/Microsoft/MRDesignLabs_Unity_tools</a>, logo, é necessário atualizar o repositório local com estes submodulos que contém elementos de tooling essenciais. Para baixá-los utilize os comandos:</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd MRDesignLabs_Unity</span><br><span class="line">git <span class="keyword">submodule </span>init</span><br><span class="line">git <span class="keyword">submodule </span>update</span><br><span class="line">git <span class="keyword">submodule </span>foreach git pull <span class="keyword">origin </span>master</span><br></pre></td></tr></table></figure>
+<p>Abra o projeto pelo Unity e crie uma versão do pacote através do menu <code>Assets</code> &gt; <code>Export Package</code>.<br>Assim, ao criar um novo projeto basta importar a <em>Asset</em> com a versão desejada do MRDL.</p>
+<h1 id="Prefabs-e-exemplos-disponiveis"><a href="#Prefabs-e-exemplos-disponiveis" class="headerlink" title="Prefabs e exemplos disponíveis"></a>Prefabs e exemplos disponíveis</h1><p>Os <em>prefabs</em> disponíveis foram criados para disponibilizar as ações mais comuns dentro de apps holográficas, como:</p>
+<ul>
+<li>Menus e Toolbars</li>
+<li>Botões interativos</li>
+<li>Barras de progresso</li>
+<li>Caixas de diálogo</li>
+<li>Suporte para alterar a escala e a rotação dos objetos</li>
+</ul>
+<p><a href="InteractibleObject_TestScene.jpg"><img src="InteractibleObject_TestScene.jpg" alt="Interactible Objects"></a> </p>
+<p>Existem também prefabs como o <strong><em>Object Collection</em></strong> que adicionam capacidades de modificação da visualização de objetos em diferentes tipos de agrupamento 3D.</p>
+<p><a href="ObjectCollection_Types.jpg"><img src="ObjectCollection_Types.jpg" alt="Object Collection"></a> </p>
+<p>Na página inicial do projeto ou na <a href="https://github.com/Microsoft/MRDesignLabs_Unity/wiki" target="_blank" rel="noopener">wiki</a> do mesmo você pode conferir toda a documentação disponível para sair utilizando estes prefabs.</p>
+<h1 id="App-Bar-e-Bounding-Box"><a href="#App-Bar-e-Bounding-Box" class="headerlink" title="App Bar e Bounding Box"></a>App Bar e Bounding Box</h1><p>Alguns dos componentes mais simples e úteis do MRDL são as <em>App Bars</em> e os <em>Bounding Boxes</em>. </p>
+<p><em>App Bars</em> são <em>prefabs</em> que criam botões de interação na interface, com todo o sistema de <em>Event System</em> que um botão deve ter.<br><em>Bounding Boxes</em> são scripts que adicionam a capacidade de alterarmos a escala e rotação de objetos, além de dar suporte a drag and drop.</p>
+<p>Vamos criar uma aplicação para utilizar o <em>Bounding Box</em> e conhecer um pouco do sistema de eventos.</p>
+<p>Nossa aplicação terá uma interface contendo:</p>
+<ul>
+<li>1 botão</li>
+<li>1 holograma com opções de alteração de escala, rotação e também o suporte a drag and drop.</li>
+</ul>
+<p>Ao clicar no botão, o holograma será exibido.<br>Ao clicar no holograma, uma interface para rotacionar e redimensionar serão exibidas.</p>
+<p>Essa é a ideia, agora, vamos a prática. </p>
+<p>Crie um novo projeto e importe a <em>asset</em> do MRDL, remova todos os elementos padrões e adicione o <em>prefab</em> <code>Hololens</code>, localizado em <code>MRDesignLab</code> &gt; <code>HUX</code> &gt; <code>Prefabs</code> &gt; <code>Interface</code>. Este <em>prefab</em> contém as configurações de camera, audio e todo o <em>event system</em> suportado pelos <em>scripts</em> e <em>prefabs</em> do MRDL.</p>
+<p>Se preferir, você também pode adicionar este <em>prefab</em> pelo menu, através dos itens de menu <code>HUX</code> &gt; <code>Interface</code> &gt; <code>Hololens</code>.</p>
+<h2 id="Botoes"><a href="#Botoes" class="headerlink" title="Botões"></a>Botões</h2><p>Iremos utilizar um dos <em>prefabs</em> de botões do MRDL, neste caso, eu adicionei o <strong>CircleButton</strong>, localizado em <code>MRDesignLab</code> &gt; <code>HUX</code> &gt; <code>Prefabs</code> &gt; <code>Buttons</code>, ou através do menu <code>HUX</code> &gt; <code>Buttons</code> &gt; <code>Add Compound Button (Circle)</code>.</p>
+<p>Os botões disponibilizados pelo MRDL já possuem seletores para ícones, cores para mudança de estado e audio para eventos de click, hold, release e etc.</p>
+<p>Deixei o botão localizado a 2 metros da camera, e 30 centímetros a esquerda.</p>
+<h2 id="Modelo-3D"><a href="#Modelo-3D" class="headerlink" title="Modelo 3D"></a>Modelo 3D</h2><p>Crie um <code>GameObject</code> para que possamos adicionar o holograma e renomeie-o para <code>Objetos</code>.<br>Configure-o para ficar a 2 metros da camera.</p>
+<p>Importe um modelo 3d de sua preferência para dentro do elemento <code>Objetos</code>.</p>
+<blockquote>
+<p>Eu utilizei o modelo 3d de um <a href="https://www.assetstore.unity3d.com/en/#!/content/83508" target="_blank" rel="noopener">barril de metal</a> obtido na <a href="https://www.assetstore.unity3d.com/en/" target="_blank" rel="noopener">Unity Asset Store</a>, este modelo é gratuito, possui boa textura e esta bem otimizado.</p>
+</blockquote>
+<p>Eu renomeei o modelo para <code>Barril</code> e alterei a rotação para <code>130&#39;</code> em <code>X</code>, desta forma o logotipo de material tóxico será exibido de frente para a camera.</p>
+<p>Sua cena ficará com a seguinte configuração.</p>
+<p><a href="setup1.png"><img src="setup1.png" alt="Setup 1"></a> </p>
+<h2 id="Bounding-Boxes"><a href="#Bounding-Boxes" class="headerlink" title="Bounding Boxes"></a>Bounding Boxes</h2><blockquote>
+<p><code>Bounding Boxes</code> são mecanismos que descrevem a área de um objeto, podendo permitir a sua manipulação.</p>
+</blockquote>
+<p><a href="boundingbox.png"><img src="boundingbox.png" alt="Exemplo de Bounding Box"></a> </p>
+<p>Iremos utilizar scripts do MRDL que adicionam dinamicamente o suporte a Bounding Box ao barril de metal em nosso projeto.</p>
+<p>Adicione o script <code>Bounding Box Target</code> ao elemento <code>Objetos</code>.</p>
+<p>Este script possui uma dependência explícita com o script <code>Compound Button</code>, logo, ele também será adicionado ao elemento.</p>
+<p>Configure o <code>Bounding Box Target</code> para permitir as operações desejadas.</p>
+<blockquote>
+<p>Eu selecionei todas as opções de rotação e também o suporte a drag and drop e alteração de escala uniforme.</p>
+</blockquote>
+<p><a href="setup-boundingbox.png"><img src="setup-boundingbox.png" alt="Setup Bounding Box"></a> </p>
+<h1 id="Exibindo-os-objetos-apos-o-clique-no-botao"><a href="#Exibindo-os-objetos-apos-o-clique-no-botao" class="headerlink" title="Exibindo os objetos após o clique no botão"></a>Exibindo os objetos após o clique no botão</h1><p>Ao rodar o projeto no estado atual o objeto 3d já terá suporte ao <code>Bounding Box</code>, basta clicar sobre o barril para que as opções sejam exibidas, mas ainda precisamos conhecer o sistema de eventos do MRDL, que estão vinculados aos <code>Interactable Objects</code>. Para isso, vamos desabilitar o elemento Objetos e exibí-lo somente após o clique no botão.</p>
+<p>Crie um novo <em>GameObject</em> e renomeie para <code>Receivers</code>, iremos concentrar todos os scripts que efetuam ações dentro desse <em>GameObject</em>. </p>
+<h1 id="InteractionReceiver"><a href="#InteractionReceiver" class="headerlink" title="InteractionReceiver"></a>InteractionReceiver</h1><p><em>InteractionReceiver</em> é uma classe abstrata do MRDL que possui a implementação básica de diversos eventos, algo muito parecido com as interfaces que utilizamos no <em>MixedRealityToolkit-Unity</em>.</p>
+<p>Alguns métodos que podemos extender:</p>
+<pre><code>OnFocusEnter
+OnFocusExit
+OnNavigationStarted
+OnNavigationUpdated
+OnNavigationCompleted
+OnNavigationCanceled
+OnTapped
+OnDoubleTapped
+OnHoldStarted
+OnHoldCompleted
+OnHoldCanceled
+OnManipulationStarted
+OnManipulationUpdated
+OnManipulationCompleted
+OnManipulationCanceled
+</code></pre><p>Para o nosso cenário, precisamos extender o método <code>OnTapped</code>, que manipula o click no botão, para isso iremos criar um script que irá simplesmente habilitar ou desabilitar objetos.</p>
+<p>Crie um script dentro do elemento <code>Receivers</code> com o nome de <em><code>ToggleReceiver</code></em>.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> HUX.Interaction;</span><br><span class="line"><span class="keyword">using</span> HUX.Receivers;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ToggleReceiver</span> : <span class="title">InteractionReceiver</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">bool</span> _toggled;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnTapped</span>(<span class="params">GameObject obj, InteractionManager.InteractionEventArgs eventArgs</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        _toggled = !_toggled;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Targets.Count; i++)</span><br><span class="line">            Targets[i].SetActive(_toggled);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ao voltar ao Unity, podemos associar elementos que irão gerar e receber as interações, no MRDL eles são chamados de <em><code>Interactibles</code></em> e <em><code>Targets</code></em>, respectivamente.</p>
+<p>Associe o elemento <em>CircleButton</em> ao primeiro <em>Interactible</em> e em seguida associe o elemento <em>Objetos</em> ao primeiro <em>Target</em>. Basta arrastar os objetos a partir do painel <em>Hierarchy</em>.</p>
+<h2 id="Resultado"><a href="#Resultado" class="headerlink" title="Resultado"></a>Resultado</h2><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/w0GjN4vspSI?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe></div>
+
+<p><br></p>
+<blockquote>
+<p>O código fonte deste projeto está disponível em <a href="https://github.com/lazarofl/MRDL-Demo" target="_blank" rel="noopener">https://github.com/lazarofl/MRDL-Demo</a></p>
+</blockquote>
+<h2 id="Bonus-Exemplos-de-apps"><a href="#Bonus-Exemplos-de-apps" class="headerlink" title="Bônus - Exemplos de apps"></a>Bônus - Exemplos de apps</h2><p>Se você deseja analisar mais a fundo bons projetos, existem duas apps com código fonte disponível em repositórios separados e que fazem uso de componentes reaproveitados do MRDL. Estes exemplos foram desenvolvidos pelo time do MRDL.</p>
+<p>Os projetos atuais são:</p>
+<p><a href="https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable" target="_blank" rel="noopener">https://github.com/Microsoft/MRDesignLabs_Unity_PeriodicTable</a><br><a href="https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule" target="_blank" rel="noopener">https://github.com/Microsoft/MRDesignLabs_Unity_LunarModule</a></p>
+<p>Por enquanto é isso pessoal, até mais.</p>
+</article><section id="comments"><h2>Comments<div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript></div></h2></section></main><script async>(function(h,g,l,k,j,i){j=h.createElement(g),i=h.getElementsByTagName(g)[0],
+j.src = '//' + l + '.disqus.com/' + k + '.js', i.parentNode.insertBefore(j, i)})
+(document,'script','lazarolima','embed');
+</script><script async>var disqus_shortname = 'lazarolima';
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(s);
+}());
+</script></body></html>
